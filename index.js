@@ -12,14 +12,14 @@ const exec = require('child_process').exec;
 const data = [];
 
 // this function scrapes the top ten most depended dependencies from the npmjs page
-function scrapePackages (count, callback) {
+function scrapePackages (count) {
   return new Promise((resolve, reject) => {
     request('https://www.npmjs.com/browse/depended', (err, response, html) => {
       if (err) return reject('error occurred');
       let $ = cheerio.load(html);
       // scrape for the name and rank of dependencies
       $('main').find('div > div > section > div > div > a').each((idx, el) => {
-        if (data.length <= 9) {
+        if (data.length < count) {
           const currPackage = {
             rank: idx+1,
             name: $(el).text()
@@ -30,7 +30,7 @@ function scrapePackages (count, callback) {
         });
         // now grab the version for each of the packages and save in the package object
         $('main').find('div > div > section > div > div > span').each((idx, el) => {
-          if (idx <= 9) {
+          if (idx < count) {
             const spanText = $(el).text();
             const currVersion = spanText.split(' ')[1];
             data[idx]['version'] = currVersion;
@@ -61,10 +61,11 @@ function handleTarball(pkgObj) {
 }
 
 // this function implements the helper functions
-async function downloadPackages(dataList) {
+async function downloadPackages(count, callback) {
   let list;
   try {
-    list = await scrapePackages(dataList);
+    list = await scrapePackages(count);
+    callback();
   } catch(err) {
     console.log('thrown value: ', err);
   }
@@ -81,4 +82,4 @@ async function downloadPackages(dataList) {
 }
 
 // invoke downloadPackages to download and extract package tarballs
-downloadPackages(data);
+// downloadPackages(10);
