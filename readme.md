@@ -16,5 +16,5 @@ To execute run ``node index.js``
 
 ## Testing
 
-Please execute ``node index.js`` first then run ``npm test`` for testing :)
+Please run ``npm test`` for testing :)
 
