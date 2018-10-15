@@ -77,3 +77,4 @@ async function downloadPackages(count, callback) {
   return list;
 }
 
+//downloadPackages(10, ()=>console.log('packages are in packages directory!'));
