@@ -19,5 +19,4 @@ To execute run ``node index.js``
 We've created a failing `npm test` command for you. You can add additional tests if you'd like and even bring in a tool other than [`tape`](https://github.com/substack/tape) as long as these initial tests remain unchanged and `npm test` sets correct exit codes.
 
 Passing tests don't guarantee that your solution is perfect but a failing test definitely indicates a problem.
-# t10d
-# t10d
+
