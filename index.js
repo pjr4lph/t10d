@@ -42,12 +42,12 @@ function scrapePackages (count) {
 }
 
 // this function downloads the tarball for each package and extracts them into the package directory
-function handleTarball(pkgObj) {
+async function handleTarball(pkgObj) {
   const currName = pkgObj['name'];
   const currVersion = pkgObj['version']
-  const url = getNpmTarballUrl.default(currName, currVersion);
+  const url = await getNpmTarballUrl.default(currName, currVersion);
 
-  download({
+  await download({
    url: url,
    dir: `./packages/${currName}`
   }).then(() => {
@@ -65,22 +65,15 @@ async function downloadPackages(count, callback) {
   let list;
   try {
     list = await scrapePackages(count);
-    if (arguments.length === 2) callback();
     exec('rm packages/_gitignore');
+    // iterate through the list to download and extract the tarballs to the packages directory
+    for (let pkg = 0; pkg < list.length; pkg++) {
+      await handleTarball(list[pkg]);
+    }
+  await callback();
   } catch(err) {
     console.log('thrown value: ', err);
   }
-// iterate through the list to download and extract the tarballs to the packages directory
-  for (const pkg of list) {
-    try {
-      const currPkg = await handleTarball(pkg);
-    } catch(err) {
-      console.log(err);
-    }
-  }
-
   return list;
 }
 
-// invoke downloadPackages to download and extract package tarballs
-downloadPackages(10);
