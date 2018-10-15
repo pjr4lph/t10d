@@ -65,7 +65,7 @@ async function downloadPackages(count, callback) {
   let list;
   try {
     list = await scrapePackages(count);
-    callback();
+    if (arguments.length === 2) callback();
   } catch(err) {
     console.log('thrown value: ', err);
   }
