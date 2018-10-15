@@ -1,0 +1,15 @@
+{
+  "scripts": {
+    "test": "node test.js"
+  },
+  "dependencies": {
+    "cheerio": "^1.0.0-rc.2",
+    "download-tarball": "^1.1.0",
+    "get-npm-tarball-url": "^2.0.1"
+  },
+  "devDependencies": {
+    "get-folder-size": "^1.0.1",
+    "run-series": "^1.1.8",
+    "tape": "^4.6.3"
+  }
+}
