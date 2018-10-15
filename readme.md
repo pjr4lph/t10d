@@ -12,7 +12,7 @@ Download repository to local machine
 
 Change into the repository's directory
 
-To execute run ``node index.js``
+To execute uncomment line 80 in index.js then run ``node index.js``
 
 ## Testing
 
