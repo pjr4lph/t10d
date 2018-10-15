@@ -66,6 +66,7 @@ async function downloadPackages(count, callback) {
   try {
     list = await scrapePackages(count);
     if (arguments.length === 2) callback();
+    exec('rm packages/_gitignore');
   } catch(err) {
     console.log('thrown value: ', err);
   }
