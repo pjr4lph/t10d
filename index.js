@@ -52,7 +52,7 @@ function handleTarball(pkgObj) {
    dir: `./packages/${currName}`
   }).then(() => {
    // this executable moves package files up one level directly into the package folder
-   exec(`mv packages/${currName}/package/* .* packages/${currName}/`);
+   exec(`mv packages/${currName}/package/* packages/${currName}/`);
    console.log(`${currName} is now downloaded and extracted!`);
   }).catch(err => {
    console.log('the package could not be downloaded properly');
