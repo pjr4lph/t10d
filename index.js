@@ -83,4 +83,4 @@ async function downloadPackages(count, callback) {
 }
 
 // invoke downloadPackages to download and extract package tarballs
-// downloadPackages(10);
+downloadPackages(10);
