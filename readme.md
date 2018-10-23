@@ -14,7 +14,6 @@ Change into the repository's directory
 
 To execute uncomment line 80 in index.js then run ``node index.js``
 
-## Testing
+## Test
 
 Please run ``npm test`` for testing :)
-
